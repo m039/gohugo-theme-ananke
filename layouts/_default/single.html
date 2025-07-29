@@ -60,6 +60,9 @@
       {{ if .Site.Params.commentoEnable }}
         {{- partials.Include "commento.html" . -}}
       {{ end }}
+      {{ if and .Site.Params.remark42.enabled (.Params.remark42 | default true) }}
+        {{ partial "remark42.html" . }}
+      {{ end }}
       </div>
     </div>
 
