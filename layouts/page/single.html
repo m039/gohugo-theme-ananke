@@ -2,10 +2,9 @@
   {{ partials.Include "page-header.html" . }}
 {{ end }}
 {{ define "main" }}
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <h1 class="f1">
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+      <header class="mt4 w-100">
+        <h1 class="f1 athelas mt3 mb1">
           {{ .Title }}
         </h1>
       </header>
@@ -14,5 +13,4 @@
         {{ partials.Include "comments.html" . }}
       </div>
     </article>
-  </div>
 {{ end }}
