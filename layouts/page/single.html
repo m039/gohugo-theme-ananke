@@ -2,6 +2,10 @@
   {{ partials.Include "page-header.html" . }}
 {{ end }}
 {{ define "main" }}
+  {{ $page := .}}
+  {{ $section := .Site.GetPage "section" .Section }}
+  {{ $page }}
+  {{ $section }}
   <div class="flex-l mt2 mw8 center">
     <article class="center cf pv5 ph3 ph4-ns mw7">
       <header>
@@ -9,6 +13,7 @@
           {{ .Title }}
         </h1>
       </header>
+      {{ $.Param "post_content_classes"  }}
       <div class="nested-copy-line-height lh-copy {{ $.Param "post_content_classes"  | compare.Default "serif"}} f4 nested-links {{ $.Param "text_color" | compare.Default "mid-gray" }} {{ compare.Conditional (compare.Eq $.Site.Language.LanguageDirection "rtl") "pl4-l" "pr4-l" }} w-two-thirds-l"></div>
         {{ .Content }}
         {{ partials.Include "comments.html" . }}
