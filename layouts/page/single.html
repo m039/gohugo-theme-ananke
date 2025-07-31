@@ -2,13 +2,13 @@
   {{ partials.Include "page-header.html" . }}
 {{ end }}
 {{ define "main" }}
-  <article class="flex-l mw8 center ph3 flex-wrap justify-between w-70-l">
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
       <header class="mt4 w-100">
         <h1 class="f1 athelas mt3 mb1">
           {{ .Title }}
         </h1>
       </header>
-      <div class="nested-copy-line-height lh-copy {{ $.Param "post_content_classes"  | compare.Default "serif"}} f4 nested-links {{ $.Param "text_color" | compare.Default "mid-gray" }} {{ compare.Conditional (compare.Eq $.Site.Language.LanguageDirection "rtl") "pl4-l" "pr4-l" }} w-100-l center">
+      <div class="nested-copy-line-height lh-copy {{ $.Param "post_content_classes"  | compare.Default "serif"}} f4 nested-links {{ $.Param "text_color" | compare.Default "mid-gray" }} {{ compare.Conditional (compare.Eq $.Site.Language.LanguageDirection "rtl") "pl4-l" "pr4-l" }} w-two-thirds-l center">
         {{ .Content }}
         {{ partials.Include "comments.html" . }}
       </div>
