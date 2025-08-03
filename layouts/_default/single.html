@@ -33,11 +33,7 @@
       </p>
       {{ end }}
       {{/* Hugo uses Go's date formatting is set by example. Here are two formats */}}
-      {{ if not .Date.IsZero }}
-      <time class="f6 mv4 dib tracked" {{ fmt.Printf `datetime="%s"` (.Date.Format "2006-01-02T15:04:05Z07:00") | safe.HTMLAttr }}>
-        {{- .Date | time.Format (compare.Default "January 2, 2006" .Site.Params.date_format) -}}
-      </time>
-      {{end}}
+      {{- partials.Include "time" . -}}
 
       {{/*
           Show "reading time" and "word count" but only if one of the following are true:
@@ -50,25 +46,17 @@
         <span class="f6 mv4 dib tracked"> - {{ lang.Translate "wordCount" .WordCount }} </span>
       {{ end }}
     </header>
-    <div class="nested-copy-line-height lh-copy {{ $.Param "post_content_classes"  | compare.Default "serif"}} f4 nested-links {{ $.Param "text_color" | compare.Default "mid-gray" }} {{ compare.Conditional (compare.Eq $.Site.Language.LanguageDirection "rtl") "pl4-l" "pr4-l" }} w-two-thirds-l">
+
+    <div class="nested-copy-line-height lh-copy {{ $.Param "post_content_classes"  | compare.Default "serif"}} f4 nested-links {{ $.Param "text_color" | compare.Default "mid-gray" }} {{ compare.Conditional (compare.Eq $.Site.Language.LanguageDirection "rtl") "pl4-l" "pr4-l" }} w-two-thirds-l mh0">
       {{- .Content -}}
       {{- partials.Include "tags.html" . -}}
       <div class="mt6 instapaper_ignoref">
-      {{ if .Site.Config.Services.Disqus.Shortname }}
-        {{ template "_internal/disqus.html" . }}
-      {{ end }}
-      {{ if .Site.Params.commentoEnable }}
-        {{- partials.Include "commento.html" . -}}
-      {{ end }}
-      {{ if and .Site.Params.remark42.enabled (.Params.remark42 | default true) }}
-        {{ partial "remark42.html" . }}
-      {{ end }}
+      {{- partials.Include "comments.html" . -}}
       </div>
     </div>
 
     <aside class="w-30-l mt6-l">
       {{- partials.Include "menu-contextual.html" . -}}
     </aside>
-
   </article>
 {{ end }}
