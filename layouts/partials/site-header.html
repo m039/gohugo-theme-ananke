@@ -13,7 +13,7 @@
     <div class="{{ $cover_dimming_class }}">
       {{ partials.Include "site-navigation.html" .}}
       <div class="tc-l pv4 pv6-l ph3 ph4-ns">
-        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
+        <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title" style="font-family:'Bender', Consolas, monaco, monospace; font-weight:bold">
           {{ .Title | compare.Default .Site.Title }}
         </h1>
         {{ with .Params.description }}
